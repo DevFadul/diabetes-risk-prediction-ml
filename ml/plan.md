@@ -13,3 +13,10 @@ Predict the early risk of diabetes using basic medical indicators.
 - What is Logistic Regression?
 - What is accuracy score?
 
+## File structure (ML)
+ml/
+ ├── hello.py
+ ├── load_data.py
+ ├── analyze_data.py
+ └── train_model.py 
+
