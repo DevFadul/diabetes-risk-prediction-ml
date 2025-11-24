@@ -1,5 +1,4 @@
 import pandas as pd
-
 def load_dataset():
     df = pd.read_csv("../data/diabetes.csv")
     print("Dataset successfully loaded!\n")
@@ -10,3 +9,4 @@ def load_dataset():
 
 if __name__ == "__main__":
     load_dataset()
+
