@@ -1,4 +1,4 @@
-/* ============= global layout ============= */
+/* ============= global layout – base dark mode vibes ============= */
 
 html, body, .stApp {
     background-color: #05060a;
@@ -7,13 +7,14 @@ html, body, .stApp {
         "SF Pro Text", "Segoe UI", sans-serif;
 }
 
-/* مسافة بسيطة فوق وتحت المحتوى */
+/* lil padding top/bottom so the content can breathe */
+
 .main .block-container {
     padding-top: 2.5rem;
     padding-bottom: 3.5rem;
 }
 
-/* ============= base animations ============= */
+/* ============= base animations – simple fade stuff ============= */
 
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(14px); }
@@ -25,7 +26,7 @@ html, body, .stApp {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ============= hero title + typewriter ============= */
+/* ============= hero title + fake typewriter flex ============= */
 
 @keyframes typing {
     from { width: 0; }
@@ -49,7 +50,7 @@ html, body, .stApp {
     animation: typing 2.5s steps(40, end) forwards;
 }
 
-/* ============= top bar ============= */
+/* ============= top bar – nav chip at the very top ============= */
 
 .top-bar {
     display: flex;
@@ -88,7 +89,7 @@ html, body, .stApp {
     font-weight: 500;
 }
 
-/* ============= main info box (top) ============= */
+/* ============= main info box (top hero card) ============= */
 
 .info-box {
     background: #020617;
@@ -114,7 +115,7 @@ html, body, .stApp {
     text-align: center;
 }
 
-/* list layout = two-column grid */
+/* list layout – two-column grid for the bullet points */
 
 .info-list {
     padding-left: 0;
@@ -141,7 +142,7 @@ html, body, .stApp {
     line-height: 1.4;
 }
 
-/* ============= BIG CTA BUTTON (center) ============= */
+/* ============= BIG CTA BUTTON (center hero button) ============= */
 
 @keyframes btnIntro {
     from { opacity: 0; transform: translateY(10px) scale(0.97); }
@@ -196,7 +197,7 @@ html, body, .stApp {
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.95);
 }
 
-/* ============= how this app helps u ============= */
+/* ============= how this app helps u – mini feature section ============= */
 
 .how-box {
     background: #020617;
@@ -250,7 +251,7 @@ html, body, .stApp {
     color: #cbd5f5;
 }
 
-/* ============= disclaimer strip ============= */
+/* ============= disclaimer strip – tiny warning bar ============= */
 
 .disclaimer-box {
     margin: 8px auto 32px auto;
@@ -264,7 +265,7 @@ html, body, .stApp {
     text-align: center;
 }
 
-/* ============= responsive tweaks ============= */
+/* ============= responsive tweaks – mobile cleanups ============= */
 
 @media (max-width: 980px) {
     .top-bar {
@@ -299,14 +300,15 @@ html, body, .stApp {
     }
 }
 
-/* ============= toggle label (Light mode) ============= */
+/* ============= toggle label (light-mode switch text) ============= */
 
 [data-testid="stSwitch"] label {
     font-size: 12px;
     color: #f9fafb !important;
 }
 
-/* روابط داخل البوكسات */
+/* links inside the info / how boxes – keep them on-brand */
+
 .info-box a, .how-box a {
     color: #3b82f6;
     text-decoration: underline;
@@ -315,7 +317,8 @@ html, body, .stApp {
     color: #60a5fa;
 }
 
-/* عناوين داخل البوكسات */
+/* headings inside info / how boxes */
+
 .info-box h2, .how-box h2 {
     color: #ffffff;
 }
@@ -326,7 +329,8 @@ html, body, .stApp {
     margin-top: 0;
 }
 
-/* فقرات داخل البوكسات */
+/* paragraphs inside info / how boxes */
+
 .info-box p, .how-box p {
     color: #cbd5f5;
     line-height: 1.6;
@@ -338,7 +342,8 @@ html, body, .stApp {
     margin-bottom: 12px;
 }
 
-/* قوائم داخل البوكسات */
+/* lists inside info / how boxes */
+
 .info-box ul, .how-box ul {
     padding-left: 20px;
     margin-bottom: 14px;
@@ -347,7 +352,7 @@ html, body, .stApp {
     margin-bottom: 12px;
 }
 
-/* ============= إزالة الجليتش تحت العنوان ============= */
+/* ============= kill the tiny glitch under main heading ============= */
 
 [data-testid="stHeading"] {
     margin-bottom: 0 !important;
@@ -368,7 +373,7 @@ html, body, .stApp {
     max-width: 420px !important;
 }
 
-/* ============= RISK CHECK PAGE STYLES ============= */
+/* ============= RISK CHECK PAGE STYLES – shared card + title ============= */
 
 .info-box {
     background: #020617;
@@ -389,7 +394,7 @@ html, body, .stApp {
     margin-bottom: 12px;
 }
 
-/* BASIC MODE BUTTONS (legacy key-based styles – still fine to keep) */
+/* BASIC MODE BUTTONS – old key-based hooks but still doing the job */
 
 .st-key-basic_btn {
     max-width: 1100px;
@@ -416,7 +421,7 @@ html, body, .stApp {
     box-shadow: 0 22px 60px rgba(0, 0, 0, 1) !important;
 }
 
-/* Switch to advanced */
+/* switch to advanced mode button – lives on the right */
 
 .st-key-to_advanced {
     max-width: 1100px;
@@ -444,7 +449,7 @@ html, body, .stApp {
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9) !important;
 }
 
-/* ADVANCED MODE BUTTONS (legacy key-based styles) */
+/* ADVANCED MODE BUTTONS – same legacy keys, new drip */
 
 .st-key-adv_btn {
     max-width: 1100px;
@@ -497,7 +502,7 @@ html, body, .stApp {
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9) !important;
 }
 
-/* صندوق الـ form (basic + advanced) */
+/* form box (basic + advanced) – shared container */
 
 [data-testid="stForm"] {
     background: #020617;
@@ -509,7 +514,7 @@ html, body, .stApp {
     box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
 }
 
-/* Align button wrappers */
+/* align button wrappers so layout doesn’t act weird */
 
 .st-key-basic_btn,
 .st-key-adv_btn {
@@ -525,7 +530,7 @@ html, body, .stApp {
     margin-top: 12px;
 }
 
-/* MAKE BOTH RISK-CHECK BUTTONS EXACT SAME SIZE & STYLE (legacy key-based) */
+/* MAKE ALL RISK-CHECK BUTTONS SAME SIZE (legacy key-based hack) */
 
 .st-key-adv_btn button,
 .st-key-back_basic button,
@@ -539,10 +544,10 @@ html, body, .stApp {
 }
 
 /* ============================================================
-   LIGHT MODE THEME OVERRIDES
+   LIGHT MODE THEME OVERRIDES – flip the whole UI to bright
 ============================================================ */
 
-/* خلفية الصفحة في وضع Light */
+/* page background when light theme is active */
 
 :root[data-theme="light"] html,
 :root[data-theme="light"] body,
@@ -551,7 +556,7 @@ html, body, .stApp {
     color: #020617;
 }
 
-/* صندوق الفورم والـ info-box */
+/* form + info-box in light mode */
 
 :root[data-theme="light"] [data-testid="stForm"],
 :root[data-theme="light"] .info-box {
@@ -560,13 +565,13 @@ html, body, .stApp {
     box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
 }
 
-/* عنوان القسم */
+/* section heading color for light theme */
 
 :root[data-theme="light"] .section-title {
     color: #0f172a;
 }
 
-/* الليبلات والإنبوتس */
+/* labels + inputs – light theme skin */
 
 :root[data-theme="light"] .stTextInput label,
 :root[data-theme="light"] .stNumberInput label,
@@ -582,7 +587,7 @@ html, body, .stApp {
     color: #111827 !important;
 }
 
-/* أزرار الـ Predict (basic & advanced) – key-based */
+/* Predict buttons (basic & advanced) – light mode variant */
 
 :root[data-theme="light"] .st-key-basic_btn button,
 :root[data-theme="light"] .st-key-adv_btn button {
@@ -591,7 +596,7 @@ html, body, .stApp {
     color: #ffffff !important;
 }
 
-/* أزرار التحويل/الرجوع – key-based */
+/* toggle/return buttons – light mode styling */
 
 :root[data-theme="light"] .st-key-to_advanced button,
 :root[data-theme="light"] .st-key-back_basic button {
@@ -600,15 +605,15 @@ html, body, .stApp {
     color: #111827 !important;
 }
 
-/* لون الليبل في السويتش */
+/* switch label color when theme is light */
 
 :root[data-theme="light"] [data-testid="stSwitch"] label {
     color: #020617 !important;
 }
 
 /* ===========================================
-   MAKE ADVANCED MODE BUTTONS EXACT SAME SIZE
-   (key-based; safe to keep)
+   make advanced mode buttons perfectly same size
+   (still using key-based hooks, all good)
 =========================================== */
 
 .st-key-adv_btn button,
@@ -637,7 +642,7 @@ html, body, .stApp {
 }
 
 /* --------------------------------------------------
-   PERFECT ALIGNMENT FOR ADVANCED PAGE BUTTONS (unused)
+   alt layout for advanced buttons (currently unused)
 -------------------------------------------------- */
 
 .button-row {
@@ -671,51 +676,55 @@ html, body, .stApp {
 }
 
 /* ============================================================
-   *** REAL FIX FOR YOUR CURRENT LIGHT-MODE BUG ***
-   These rules target the form submit buttons created by
-   st.form_submit_button (Predict / Basic information).
-   They are full-width already because of use_container_width=True.
+   REAL FIX FOR LIGHT-MODE GLITCH ON FORM BUTTONS
+   st.form_submit_button is full-width via use_container_width
 ============================================================ */
 
-/* Base style: keep pill look & white text */
+/* base pill style for secondary submit buttons */
+
 [data-testid="stForm"] button[kind="secondaryFormSubmit"] {
     border-radius: 18px;
     font-weight: 600;
 }
 
-/* In LIGHT MODE: keep them dark but make text WHITE so it’s visible */
+/* light mode: keep pill dark + text bright so it doesn’t disappear */
+
 :root[data-theme="light"] [data-testid="stForm"] button[kind="secondaryFormSubmit"] {
     background: #111827 !important;   /* dark pill */
     color: #f9fafb !important;        /* white text */
     border-color: #111827 !important;
 }
+
 /* ============================================================
-   FINAL FIX: form buttons colors in LIGHT MODE
-   ينطبق فقط على أزرار submit داخل الفورم (Predict / Basic information)
+   FINAL FIX: generic submit button colors in LIGHT MODE
+   only hits the real submit buttons (Predict / Basic info)
 ============================================================ */
 
 :root[data-theme="light"] [data-testid="stForm"] button[type="submit"] {
-    background: #2563eb !important;   /* أزرق جميل */
+    background: #2563eb !important;   /* clean blue */
     border-color: #1d4ed8 !important;
-    color: #ffffff !important;        /* نص أبيض وواضح */
+    color: #ffffff !important;        /* white text – readable */
 }
 
-/* تأكيد أن أي عنصر داخل الزر (span, p, ...) نصه يكون أبيض */
+/* make sure any inner span/p text stays white as well */
+
 :root[data-theme="light"] [data-testid="stForm"] button[type="submit"] * {
     color: #ffffff !important;
 }
+
 /* ============================================================
-   LIGHT MODE – FIX SUBMIT BUTTON COLORS (Predict / Basic information)
-   ينطبق فقط على أزرار st.form_submit_button داخل الفورم
+   LIGHT MODE – submit button fix for stFormSubmitButton wrapper
+   again, only for Predict / Basic information actions
 ============================================================ */
 
 :root[data-theme="light"] [data-testid="stForm"] [data-testid="stFormSubmitButton"] button {
-    background: #2563eb !important;    /* أزرق واضح للزرين */
+    background: #2563eb !important;    /* same blue for both */
     border-color: #1d4ed8 !important;
-    color: #ffffff !important;         /* نص أبيض */
+    color: #ffffff !important;         /* white text */
 }
 
-/* تأكيد إن أي span أو عنصر داخل الزر لونه أبيض */
+/* force any child nodes inside the button to stay white */
+
 :root[data-theme="light"] [data-testid="stForm"] [data-testid="stFormSubmitButton"] button * {
     color: #ffffff !important;
 }

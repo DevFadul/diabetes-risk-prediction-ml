@@ -1,13 +1,13 @@
 from pathlib import Path
 import streamlit as st
 
-# ========= basic app boot =========
+# ========= app boot stuff (kick off the page) =========
 st.set_page_config(
     page_title="GlucoSense | AI Diabetes Doctor",
     layout="wide",
 )
 
-# ========= css loader =========
+# ========= css loader (yo we just pull in the global styles) =========
 def load_css():
     root_path = Path(__file__).resolve().parent
     css_path = root_path / "assets" / "style.css"
@@ -17,7 +17,7 @@ def load_css():
 
 load_css()
 
-# ========= html chunks =========
+# ========= reusable HTML chunks (UI pieces we drop in) =========
 
 TOP_BAR_HTML = """
 <div class="top-bar">
@@ -31,7 +31,7 @@ TOP_BAR_HTML = """
 </div>
 """
 
-# 👇 هنا التغيير الوحيد: استخدمنا div بدل h1
+# only change here: using a div instead of h1 (cleaner control)
 HERO_TITLE_HTML = """
 <div class="hero-title">
   <span class="hero-title-text">Check your diabetes risk in under a minute</span>
@@ -95,7 +95,7 @@ DISCLAIMER_HTML = """
 </div>
 """
 
-# ========= theme state (light / dark toggle) =========
+# ========= theme state (light / dark toggle switch vibes) 
 
 if "light_mode" not in st.session_state:
     st.session_state["light_mode"] = False
@@ -107,7 +107,7 @@ with top_right:
 
 st.session_state["light_mode"] = light_mode
 
-# light theme override على الـ CSS الأساسي
+# light-mode override: slap extra CSS on top of the base theme
 if light_mode:
     st.markdown(
         """
@@ -154,21 +154,22 @@ html, body, .stApp {
         unsafe_allow_html=True,
     )
 
-# ========= layout render =========
+# layout rendering (dropping chunks on screen) =========
 
 st.markdown(TOP_BAR_HTML, unsafe_allow_html=True)
-st.markdown(HERO_TITLE_HTML, unsafe_allow_html=True)   # ما فيه st.write() بينهما
+st.markdown(HERO_TITLE_HTML, unsafe_allow_html=True)   # no st.write() gap here, clean stack
 
-# الكرت العلوي مباشرة تحت العنوان
+# main info card right under the hero
 st.markdown(LEFT_MAIN_HTML, unsafe_allow_html=True)
 
-# الزر في النص — CSS يعتمد على key=start_risk_btn
+# center CTA button — styling tied to key=start_risk_btn
 start_clicked = st.button("start risk check", key="start_risk_btn")
 
-# التنقّل للصفحة التالية
+# page hop into the risk-check flow
 if start_clicked:
     st.switch_page("pages/2_Risk_Check.py")
 
 st.markdown(HOW_HTML, unsafe_allow_html=True)
 st.markdown(DISCLAIMER_HTML, unsafe_allow_html=True)
-
+st.write("")
+# ========= end of Overview.py =========

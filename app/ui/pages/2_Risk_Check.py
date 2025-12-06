@@ -3,15 +3,16 @@ from dataclasses import dataclass
 import numpy as np
 import streamlit as st
 
-# --------- PAGE CONFIG ----------
+# --------- page setup (boot the Risk Check screen) ----------
 st.set_page_config(page_title="Risk Check | AI Diabetes Doctor", layout="wide")
 
 
-# --------- LOAD GLOBAL CSS ----------
+# --------- load global CSS (pull in the shared UI styling) ----------
 def load_css():
     """
-    CSS file: app/ui/assets/style.css
-    This file: app/ui/pages/2_Risk_Check.py
+    Loads the main app stylesheet.
+    CSS lives at: app/ui/assets/style.css
+    This file is: app/ui/pages/2_Risk_Check.py
     """
     ui_root = Path(__file__).resolve().parent.parent   # -> .../app/ui
     css_path = ui_root / "assets" / "style.css"
@@ -20,29 +21,29 @@ def load_css():
         with css_path.open() as f:
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
     else:
-        st.warning(f"⚠️ CSS file not found at: {css_path}")
+        st.warning(f" CSS file not found at: {css_path}")
 
 
 load_css()
 
-# --------- LIGHT MODE TOGGLE (share with Overview) ----------
+# --------- theme toggle (syncing with Overview page) ----------
 if "light_mode" not in st.session_state:
     st.session_state["light_mode"] = False
 
 light_mode = st.toggle("Light mode", key="light_mode")
 
-# --------- EXTRA LIGHT-MODE OVERRIDES (REAL FIX IS HERE) ----------
+# --------- extra light-mode patches (the real theme tweak lives here) ----------
 if st.session_state["light_mode"]:
     st.markdown(
         """
         <style>
-        /* خلفية عامة ونص */
+        /* global background + text flip */
         html, body, .stApp {
             background-color: #f4f4f5 !important;
             color: #020617 !important;
         }
 
-        /* كروت الريسك تشيك */
+        /* risk-check cards + form boxes */
         .info-box,
         [data-testid="stForm"] {
             background: #ffffff !important;
@@ -50,19 +51,19 @@ if st.session_state["light_mode"]:
             box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08) !important;
         }
 
-        /* عنوان القسم */
+        /* section title look */
         .section-title { 
             color: #020617 !important; 
         }
 
-        /* الليبلات */
+        /* labels tweak */
         .stTextInput label,
         .stNumberInput label,
         .stSelectbox label { 
             color: #111827 !important; 
         }
 
-        /* الحقول */
+        /* input boxes restyle */
         .stTextInput input,
         .stNumberInput input,
         .stSelectbox select {
@@ -71,19 +72,19 @@ if st.session_state["light_mode"]:
             border-color: #d4d4d8 !important;
         }
 
-        /* --------------------------------------------
-           أهم جزء: أزرار الفورم (Predict / Basic info)
-           نجعل الزرين نفس اللون ونفس النص في Light mode
-        ---------------------------------------------*/
+        /* -------------------------------------------------
+           biggest fix: make form buttons match in light mode
+           (Predict + Basic Info buttons)
+        ------------------------------------------------- */
         [data-testid="stForm"] [data-testid="stFormSubmitButton"] button {
-            background: #111827 !important;      /* نفس الخلفية للزرين */
+            background: #111827 !important;
             border-color: #111827 !important;
-            color: #ffffff !important;           /* نص أبيض واضح */
+            color: #ffffff !important; 
             border-radius: 28px !important;
             font-weight: 600 !important;
         }
 
-        /* أي عنصر نصي داخل الزر يبقى أبيض */
+        /* force every inner element to stay white */
         [data-testid="stForm"] [data-testid="stFormSubmitButton"] button * {
             color: #ffffff !important;
         }
@@ -92,12 +93,12 @@ if st.session_state["light_mode"]:
         unsafe_allow_html=True,
     )
 
-# --------- MODE (basic / advanced) ----------
+# --------- mode switching (basic vs advanced UI) ----------
 if "mode" not in st.session_state:
     st.session_state.mode = "basic"
 
 
-# ------------------------- DATA MODELS -------------------------
+# ------------------------- input models (just clean data containers) -------------------------
 @dataclass
 class BasicInput:
     age: int
@@ -118,7 +119,7 @@ class AdvancedInput:
     pregnancies: int
 
 
-# ------------------------- MODELS -------------------------
+# ------------------------- tiny mock ML scoring -------------------------
 def basic_model(x: BasicInput):
     score = 0
     score += (x.age - 35) * 0.01
@@ -142,13 +143,13 @@ def advanced_model(x: AdvancedInput):
 
 
 # ================================================================
-#                         BASIC MODE
+#                         BASIC MODE UI
 # ================================================================
 if st.session_state.mode == "basic":
 
     st.markdown("<h2 class='section-title'>Basic information</h2>", unsafe_allow_html=True)
 
-    # كل شيء داخل هذا الـ form
+    # whole basic-flow UI lives inside this form
     with st.form("basic_form"):
         col1, col2 = st.columns(2)
 
@@ -165,22 +166,22 @@ if st.session_state.mode == "basic":
         bmi_calc = weight / ((height / 100) ** 2)
         st.caption(f"Estimated BMI from height/weight: **{bmi_calc:.1f}**")
 
-        # === صف الأزرار ===
+        # === button row (Predict on left, switch to Advanced on right) ===
         btn_col_left, btn_col_right = st.columns([1, 1])
 
         with btn_col_left:
             basic_submit = st.form_submit_button(
                 "Predict",
-                use_container_width=True,   # ← يملأ عرض العمود بالكامل
+                use_container_width=True,   # stretch button full-width in its column
             )
 
         with btn_col_right:
             to_advanced = st.form_submit_button(
                 "Advanced clinical values",
-                use_container_width=True,   # ← نفس الشيء، فيصبحان نفس الطول
+                use_container_width=True,   # same trick so both stay equal-sized
             )
 
-    # معالجة النتيجة/التبديل بعد submit
+    # handle Predict + mode switching
     if basic_submit:
         data = BasicInput(
             age=age,
@@ -199,7 +200,7 @@ if st.session_state.mode == "basic":
 
 
 # ================================================================
-#                       ADVANCED MODE
+#                       ADVANCED MODE UI
 # ================================================================
 else:
     st.markdown(
@@ -220,7 +221,7 @@ else:
             skin = st.number_input("Skin Thickness (mm)", 0.0, 80.0, 20.0)
             bmi = st.number_input("BMI", 10.0, 60.0, 26.0)
 
-        # === صف الأزرار ===
+        # === button row (Predict vs switch back to Basic mode) ===
         btn_col_left, btn_col_right = st.columns([1, 1])
 
         with btn_col_left:
@@ -250,3 +251,4 @@ else:
     if back_basic:
         st.session_state.mode = "basic"
         st.rerun()
+# ========= end of 2_Risk_Check.py =========
