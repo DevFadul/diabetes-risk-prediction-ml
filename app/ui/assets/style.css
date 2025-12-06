@@ -1,0 +1,721 @@
+/* ============= global layout ============= */
+
+html, body, .stApp {
+    background-color: #05060a;
+    color: #f9fafb;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        "SF Pro Text", "Segoe UI", sans-serif;
+}
+
+/* مسافة بسيطة فوق وتحت المحتوى */
+.main .block-container {
+    padding-top: 2.5rem;
+    padding-bottom: 3.5rem;
+}
+
+/* ============= base animations ============= */
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============= hero title + typewriter ============= */
+
+@keyframes typing {
+    from { width: 0; }
+    to   { width: 100%; }
+}
+
+.hero-title {
+    font-size: 44px;
+    line-height: 1.1;
+    font-weight: 800;
+    color: #ffffff;
+    margin-top: 40px;
+    margin-bottom: 40px !important;
+    text-align: center;
+}
+
+.hero-title-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 2.5s steps(40, end) forwards;
+}
+
+/* ============= top bar ============= */
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #020617;
+    border-radius: 999px;
+    padding: 10px 22px;
+    border: 1px solid rgba(148, 163, 184, 0.5);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    animation: fadeDown 0.5s ease-out both;
+}
+
+.brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-weight: 800;
+    font-size: 22px;
+    color: #ffffff;
+}
+
+.brand-subtitle {
+    font-size: 13px;
+    color: #60a5fa;
+}
+
+.brand-badge {
+    font-size: 13px;
+    color: #e5f1ff;
+    background: #0ea5e9;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 500;
+}
+
+/* ============= main info box (top) ============= */
+
+.info-box {
+    background: #020617;
+    padding: 44px 44px 44px 44px;
+    border-radius: 25px;
+    margin: 8px auto 0 auto;
+    border: 1px solid #1d4ed8;
+    max-width: 1100;
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
+    animation: fadeUp 0.6s ease-out both;
+}
+
+.main-info {
+    padding-top: 6px;
+}
+
+.info-text {
+    margin-top: -15px !important;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 26px;
+    text-align: center;
+}
+
+/* list layout = two-column grid */
+
+.info-list {
+    padding-left: 0;
+    margin-left: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 50px;
+    row-gap: 25px;
+}
+
+.info-list li {
+    list-style-type: none;
+    font-size: 17px;
+    font-weight: 500;
+    display: flex;
+    align-items: flex-start;
+}
+
+.checkmark {
+    color: #22c55e;
+    font-weight: 700;
+    margin-right: 8px;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+/* ============= BIG CTA BUTTON (center) ============= */
+
+@keyframes btnIntro {
+    from { opacity: 0; transform: translateY(10px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes btnGlow {
+    0%   { box-shadow: 0 0 0 rgba(56,189,248,0.0); }
+    50%  { box-shadow: 0 0 40px rgba(56,189,248,0.7); }
+    100% { box-shadow: 0 0 0 rgba(56,189,248,0.0); }
+}
+
+.st-key-start_risk_btn {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.st-key-start_risk_btn .stButton {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 350px;
+    margin: 30px auto 5px auto;
+}
+
+.st-key-start_risk_btn .stButton > button {
+    background: #1d4ed8;
+    border-radius: 20px;
+    border: 2px solid #cbd5f5;
+    padding: 22px 80px;
+    font-size: 100px;
+    font-weight: 1500;
+    color: #ffffff;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    box-shadow: 0 26px 70px rgba(0, 0, 0, 1);
+    animation: btnIntro 0.35s ease-out, btnGlow 2.4s ease-in-out 0.5s infinite;
+}
+
+.st-key-start_risk_btn .stButton > button:hover {
+    transform: translateY(-2px) scale(1.02);
+    filter: brightness(1.05);
+    box-shadow: 0 32px 72px rgba(0, 0, 0, 1);
+}
+
+.st-key-start_risk_btn .stButton > button:active {
+    transform: translateY(0) scale(0.99);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.95);
+}
+
+/* ============= how this app helps u ============= */
+
+.how-box {
+    background: #020617;
+    border-radius: 20px;
+    border: 1px solid #1d4ed8;
+    padding: 22px 28px;
+    margin: 22px auto 10px auto;
+    max-width: 960px;
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
+    animation: fadeUp 0.6s ease-out both;
+}
+
+.how-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.how-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: space-between;
+}
+
+.how-item {
+    flex: 1 1 0;
+    min-width: 230px;
+    display: flex;
+    gap: 10px;
+}
+
+.how-number {
+    font-weight: 700;
+    color: #38bdf8;
+    font-size: 18px;
+    margin-top: 2px;
+}
+
+.how-heading {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 4px;
+    color: #ffffff;
+}
+
+.how-text {
+    font-size: 14px;
+    color: #cbd5f5;
+}
+
+/* ============= disclaimer strip ============= */
+
+.disclaimer-box {
+    margin: 8px auto 32px auto;
+    max-width: 560px;
+    padding: 10px 16px;
+    border-radius: 14px;
+    border: 1px solid #f97316;
+    background: rgba(249, 115, 22, 0.16);
+    font-size: 12px;
+    color: #fed7aa;
+    text-align: center;
+}
+
+/* ============= responsive tweaks ============= */
+
+@media (max-width: 980px) {
+    .top-bar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 860px) {
+    .how-columns {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 760px) {
+    .hero-title {
+        font-size: 34px;
+    }
+    .info-list {
+        grid-template-columns: 1fr;
+    }
+    .st-key-start_risk_btn .stButton > button {
+        font-size: 24px;
+        padding: 16px 60px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: 28px;
+    }
+}
+
+/* ============= toggle label (Light mode) ============= */
+
+[data-testid="stSwitch"] label {
+    font-size: 12px;
+    color: #f9fafb !important;
+}
+
+/* روابط داخل البوكسات */
+.info-box a, .how-box a {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+.info-box a:hover, .how-box a:hover {
+    color: #60a5fa;
+}
+
+/* عناوين داخل البوكسات */
+.info-box h2, .how-box h2 {
+    color: #ffffff;
+}
+.info-box h2 {
+    margin-top: 0;
+}
+.how-box h2 {
+    margin-top: 0;
+}
+
+/* فقرات داخل البوكسات */
+.info-box p, .how-box p {
+    color: #cbd5f5;
+    line-height: 1.6;
+}
+.info-box p {
+    margin-bottom: 14px;
+}
+.how-box p {
+    margin-bottom: 12px;
+}
+
+/* قوائم داخل البوكسات */
+.info-box ul, .how-box ul {
+    padding-left: 20px;
+    margin-bottom: 14px;
+}
+.how-box ul {
+    margin-bottom: 12px;
+}
+
+/* ============= إزالة الجليتش تحت العنوان ============= */
+
+[data-testid="stHeading"] {
+    margin-bottom: 0 !important;
+}
+[data-testid="stHeading"] button {
+    display: none !important;
+}
+
+.st-key-start_risk_btn .stButton > button * {
+    font-size: 23px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em !important;
+    white-space: nowrap !important;
+}
+
+.st-key-start_risk_btn .stButton > button {
+    width: 420px !important;
+    max-width: 420px !important;
+}
+
+/* ============= RISK CHECK PAGE STYLES ============= */
+
+.info-box {
+    background: #020617;
+    padding: 44px;
+    border-radius: 25px;
+    border: 1px solid #1d4ed8;
+    max-width: 1100px;
+    margin: 20px auto 30px auto;
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
+}
+
+.section-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 12px;
+}
+
+/* BASIC MODE BUTTONS (legacy key-based styles – still fine to keep) */
+
+.st-key-basic_btn {
+    max-width: 1100px;
+    margin: 18px auto 0 auto;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.st-key-basic_btn button {
+    background: #1d4ed8 !important;
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    padding: 12px 40px !important;
+    border-radius: 18px !important;
+    border: 2px solid #93c5fd !important;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.9) !important;
+    letter-spacing: 0.06em !important;
+    transition: 0.18s ease-out !important;
+}
+
+.st-key-basic_btn button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 1) !important;
+}
+
+/* Switch to advanced */
+
+.st-key-to_advanced {
+    max-width: 1100px;
+    margin: 12px auto 0 auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.st-key-to_advanced button {
+    background: #020617 !important;
+    color: #e5e7eb !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    padding: 10px 28px !important;
+    border-radius: 18px !important;
+    border: 1px solid #1d4ed8 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7) !important;
+    letter-spacing: 0.04em !important;
+    transition: 0.16s ease-out !important;
+}
+
+.st-key-to_advanced button:hover {
+    transform: translateY(-2px);
+    background: #0b1120 !important;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* ADVANCED MODE BUTTONS (legacy key-based styles) */
+
+.st-key-adv_btn {
+    max-width: 1100px;
+    margin: 18px auto 0 auto;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.st-key-adv_btn button {
+    background: #1d4ed8 !important;
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    padding: 12px 40px !important;
+    border-radius: 18px !important;
+    border: 2px solid #93c5fd !important;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.9) !important;
+    letter-spacing: 0.06em !important;
+    transition: 0.18s ease-out !important;
+}
+
+.st-key-adv_btn button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 1) !important;
+}
+
+.st-key-back_basic {
+    max-width: 1100px;
+    margin: 12px auto 0 auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.st-key-back_basic button {
+    background: #020617 !important;
+    color: #e5e7eb !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    padding: 10px 28px !important;
+    border-radius: 18px !important;
+    border: 1px solid #1d4ed8 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7) !important;
+    letter-spacing: 0.04em !important;
+    transition: 0.16s ease-out !important;
+}
+
+.st-key-back_basic button:hover {
+    transform: translateY(-2px);
+    background: #0b1120 !important;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* صندوق الـ form (basic + advanced) */
+
+[data-testid="stForm"] {
+    background: #020617;
+    border-radius: 25px;
+    border: 1px solid #1d4ed8;
+    padding: 32px 36px 30px 36px;
+    max-width: 1100px;
+    margin: 20px auto 30px auto;
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
+}
+
+/* Align button wrappers */
+
+.st-key-basic_btn,
+.st-key-adv_btn {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 18px;
+}
+
+.st-key-to_advanced,
+.st-key-back_basic {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+/* MAKE BOTH RISK-CHECK BUTTONS EXACT SAME SIZE & STYLE (legacy key-based) */
+
+.st-key-adv_btn button,
+.st-key-back_basic button,
+.st-key-basic_btn button,
+.st-key-to_advanced button {
+    width: 260px !important;
+    text-align: center !important;
+    border-radius: 18px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+/* ============================================================
+   LIGHT MODE THEME OVERRIDES
+============================================================ */
+
+/* خلفية الصفحة في وضع Light */
+
+:root[data-theme="light"] html,
+:root[data-theme="light"] body,
+:root[data-theme="light"] .stApp {
+    background-color: #f3f4f6;
+    color: #020617;
+}
+
+/* صندوق الفورم والـ info-box */
+
+:root[data-theme="light"] [data-testid="stForm"],
+:root[data-theme="light"] .info-box {
+    background: #ffffff;
+    border-color: #bfdbfe;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+}
+
+/* عنوان القسم */
+
+:root[data-theme="light"] .section-title {
+    color: #0f172a;
+}
+
+/* الليبلات والإنبوتس */
+
+:root[data-theme="light"] .stTextInput label,
+:root[data-theme="light"] .stNumberInput label,
+:root[data-theme="light"] .stSelectbox label {
+    color: #111827 !important;
+}
+
+:root[data-theme="light"] .stTextInput input,
+:root[data-theme="light"] .stNumberInput input,
+:root[data-theme="light"] .stSelectbox select {
+    background: #f9fafb !important;
+    border: 1px solid #d1d5db !important;
+    color: #111827 !important;
+}
+
+/* أزرار الـ Predict (basic & advanced) – key-based */
+
+:root[data-theme="light"] .st-key-basic_btn button,
+:root[data-theme="light"] .st-key-adv_btn button {
+    background: #2563eb !important;
+    border-color: #bfdbfe !important;
+    color: #ffffff !important;
+}
+
+/* أزرار التحويل/الرجوع – key-based */
+
+:root[data-theme="light"] .st-key-to_advanced button,
+:root[data-theme="light"] .st-key-back_basic button {
+    background: #f9fafb !important;
+    border-color: #d1d5db !important;
+    color: #111827 !important;
+}
+
+/* لون الليبل في السويتش */
+
+:root[data-theme="light"] [data-testid="stSwitch"] label {
+    color: #020617 !important;
+}
+
+/* ===========================================
+   MAKE ADVANCED MODE BUTTONS EXACT SAME SIZE
+   (key-based; safe to keep)
+=========================================== */
+
+.st-key-adv_btn button,
+.st-key-back_basic button {
+    width: 300px !important;
+    height: 56px !important;
+    padding: 0 !important;
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-size: 18px !important;
+    border-radius: 22px !important;
+}
+
+.st-key-adv_btn,
+.st-key-back_basic {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.st-key-adv_btn button *,
+.st-key-back_basic button * {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* --------------------------------------------------
+   PERFECT ALIGNMENT FOR ADVANCED PAGE BUTTONS (unused)
+-------------------------------------------------- */
+
+.button-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.button-row button {
+    width: 300px;
+    height: 65px;
+    border-radius: 28px;
+    font-size: 20px;
+    font-weight: 600;
+    border: 2px solid #3b82f6;
+    background: #1d4ed8;
+    color: white;
+    cursor: pointer;
+    transition: 0.18s ease-out;
+}
+
+.button-row .right-btn button {
+    background: transparent;
+    border-color: #3b82f6;
+}
+
+.button-row button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* ============================================================
+   *** REAL FIX FOR YOUR CURRENT LIGHT-MODE BUG ***
+   These rules target the form submit buttons created by
+   st.form_submit_button (Predict / Basic information).
+   They are full-width already because of use_container_width=True.
+============================================================ */
+
+/* Base style: keep pill look & white text */
+[data-testid="stForm"] button[kind="secondaryFormSubmit"] {
+    border-radius: 18px;
+    font-weight: 600;
+}
+
+/* In LIGHT MODE: keep them dark but make text WHITE so it’s visible */
+:root[data-theme="light"] [data-testid="stForm"] button[kind="secondaryFormSubmit"] {
+    background: #111827 !important;   /* dark pill */
+    color: #f9fafb !important;        /* white text */
+    border-color: #111827 !important;
+}
+/* ============================================================
+   FINAL FIX: form buttons colors in LIGHT MODE
+   ينطبق فقط على أزرار submit داخل الفورم (Predict / Basic information)
+============================================================ */
+
+:root[data-theme="light"] [data-testid="stForm"] button[type="submit"] {
+    background: #2563eb !important;   /* أزرق جميل */
+    border-color: #1d4ed8 !important;
+    color: #ffffff !important;        /* نص أبيض وواضح */
+}
+
+/* تأكيد أن أي عنصر داخل الزر (span, p, ...) نصه يكون أبيض */
+:root[data-theme="light"] [data-testid="stForm"] button[type="submit"] * {
+    color: #ffffff !important;
+}
+/* ============================================================
+   LIGHT MODE – FIX SUBMIT BUTTON COLORS (Predict / Basic information)
+   ينطبق فقط على أزرار st.form_submit_button داخل الفورم
+============================================================ */
+
+:root[data-theme="light"] [data-testid="stForm"] [data-testid="stFormSubmitButton"] button {
+    background: #2563eb !important;    /* أزرق واضح للزرين */
+    border-color: #1d4ed8 !important;
+    color: #ffffff !important;         /* نص أبيض */
+}
+
+/* تأكيد إن أي span أو عنصر داخل الزر لونه أبيض */
+:root[data-theme="light"] [data-testid="stForm"] [data-testid="stFormSubmitButton"] button * {
+    color: #ffffff !important;
+}
