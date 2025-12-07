@@ -1,0 +1,27 @@
+[
+    {
+        "feature":"Glucose",
+        "value":120.0,
+        "impact":-0.1370339509
+    },
+    {
+        "feature":"Pregnancies",
+        "value":1.0,
+        "impact":-0.0758726671
+    },
+    {
+        "feature":"SkinThickness",
+        "value":48.0,
+        "impact":-0.0430942289
+    },
+    {
+        "feature":"Age",
+        "value":41.0,
+        "impact":0.0426697327
+    },
+    {
+        "feature":"BloodPressure",
+        "value":80.0,
+        "impact":-0.0207736427
+    }
+]

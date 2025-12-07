@@ -1,96 +1,113 @@
 import os
 import joblib
-import pandas as pd
-import numpy as np
 import shap
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
+import pandas as pd
 import matplotlib.pyplot as plt
 
-# ===========================
-# Helper: resolve project root
-# ===========================
-def get_project_root():
-    return os.path.dirname(os.path.dirname(__file__))
+RESULTS_DIR = "ml/results"
+MODEL_DIR = "ml/models"
+DATA_PATH = os.path.join("data", "diabetes.csv")
 
-# ===========================
-# Load data + model
-# ===========================
-def load_data():
-    file_path = os.path.join(get_project_root(), "data", "diabetes.csv")
-    df = pd.read_csv(file_path)
+BEST_MODEL_PATH = os.path.join(MODEL_DIR, "best_model.pkl")
+SCALER_PATH = os.path.join(MODEL_DIR, "scaler.pkl")
+
+
+def load_model_and_data():
+    print("Loading model and data...")
+
+    model = joblib.load(BEST_MODEL_PATH)
+    scaler = joblib.load(SCALER_PATH)
+
+    df = pd.read_csv(DATA_PATH)
     X = df.drop("Outcome", axis=1)
     y = df["Outcome"]
-    return X, y
 
-def load_model_and_scaler():
-    model_path = os.path.join(get_project_root(), "ml", "models", "best_model.pkl")
-    scaler_path = os.path.join(get_project_root(), "ml", "models", "scaler.pkl")
-    model = joblib.load(model_path)
-    scaler = joblib.load(scaler_path)
-    return model, scaler
+    return model, scaler, X, y
 
 
-# ===========================
-# SHAP explanation
-# ===========================
-def explain_model():
-    print("Loading data and model...")
-    X, y = load_data()
-    model, scaler = load_model_and_scaler()
+def prepare_samples(scaler, X):
+    # Scale features but keep DataFrame with named columns
+    X_scaled = scaler.transform(X)
+    X_scaled_df = pd.DataFrame(X_scaled, columns=X.columns)
 
-    # Train-test split with preserved feature names
-    X_train, X_test, _, _ = train_test_split(
-        X, y, test_size=0.2, random_state=42, stratify=y
-    )
+    # Reduce sample size for SHAP performance
+    background = X_scaled_df.sample(20, random_state=42)
+    sample = X_scaled_df.sample(20, random_state=42)
 
-    # Preserve feature names through scaling
-    X_train_scaled = pd.DataFrame(scaler.transform(X_train), columns=X.columns)
-    X_test_scaled = pd.DataFrame(scaler.transform(X_test), columns=X.columns)
+    print(f"Using background size: {background.shape}, sample size: {sample.shape}")
+    return background, sample
 
-    # Select a sample to build the SHAP explainer background
-    background = X_train_scaled.sample(n=100, random_state=42)
-    print(f"Building KernelExplainer with background size: {background.shape}")
 
-    # Use consistent prediction function
-    def predict_proba(data):
-        return model.predict_proba(data)[:, 1]
+def build_explainer(model, background):
+    # Use fast TreeExplainer if the model supports it
+    if hasattr(model, "tree_"):
+        print("Using TreeExplainer...")
+        explainer = shap.TreeExplainer(model)
+    else:
+        print("Using KernelExplainer (slower)...")
+        explainer = shap.KernelExplainer(model.predict_proba, background)
 
-    explainer = shap.KernelExplainer(predict_proba, background)
+    return explainer
 
-    # Explain on a subset of test data (faster)
-    X_test_sample = X_test_scaled.sample(n=50, random_state=42)
-    shap_values = explainer.shap_values(X_test_sample)
 
-    # ===========================
-    # Save results
-    # ===========================
-    results_dir = os.path.join(get_project_root(), "ml", "results")
-    os.makedirs(results_dir, exist_ok=True)
+def save_results(shap_values, sample, features):
+    os.makedirs(RESULTS_DIR, exist_ok=True)
 
-    np.save(os.path.join(results_dir, "shap_values.npy"), shap_values)
-    np.save(os.path.join(results_dir, "shap_base_value.npy"), explainer.expected_value)
-    X_test_sample.to_csv(os.path.join(results_dir, "shap_test_sample.csv"), index=False)
+    # Save raw SHAP values
+    shap_values_array = shap_values.values if hasattr(shap_values, "values") else shap_values
+    npy_path = os.path.join(RESULTS_DIR, "shap_values.npy")
+    import numpy as np
+    np.save(npy_path, shap_values_array)
+    print(f"Saved SHAP values ➜ {npy_path}")
 
-    print("\nSHAP values and samples saved!")
-
-    # ===========================
-    # Visualizations
-    # ===========================
-    plt.title("SHAP Summary Plot")
-    shap.summary_plot(shap_values, X_test_sample, show=False)
-    plt.savefig(os.path.join(results_dir, "shap_summary_plot.png"), bbox_inches="tight")
+    # Summary bar plot
+    bar_path = os.path.join(RESULTS_DIR, "shap_summary_bar.png")
+    shap.summary_plot(shap_values, sample, plot_type="bar", feature_names=features, show=False)
+    plt.tight_layout()
+    plt.savefig(bar_path)
     plt.close()
+    print(f"Saved bar plot ➜ {bar_path}")
 
-    shap.plots.bar(shap.Explanation(values=shap_values, data=X_test_sample,
-                                    feature_names=X.columns))
-    plt.title("Feature Importance (SHAP Bar Plot)")
-    plt.savefig(os.path.join(results_dir, "shap_bar_plot.png"), bbox_inches="tight")
+    # Summary dot plot
+    dot_path = os.path.join(RESULTS_DIR, "shap_summary_dot.png")
+    shap.summary_plot(shap_values, sample, feature_names=features, show=False)
+    plt.tight_layout()
+    plt.savefig(dot_path)
     plt.close()
+    print(f"Saved dot plot ➜ {dot_path}")
 
-    print("📊 SHAP summary and bar plots saved!")
-    print("✨ Model explainability complete!")
+  # Force plot for one prediction
+    force_path = os.path.join(RESULTS_DIR, "shap_force_plot.png")
+    #shap.force_plot(
+    #base_value=explainer.expected_value[1],
+    #shap_values=shap_values[1],
+    #features=sample,
+    #feature_names=features,
+    #matplotlib=True,
+    #show=False
+#)
+
+    plt.savefig(force_path, dpi=200, bbox_inches="tight")
+    plt.close()
+    print(f"Saved force plot ➜ {force_path}")
+
+
+
+def main():
+    model, scaler, X, y = load_model_and_data()
+    background, sample = prepare_samples(scaler, X)
+
+    global explainer  # used in force plot save
+    explainer = build_explainer(model, background)
+
+    print("Computing SHAP values... this may take a minute.")
+    shap_values = explainer.shap_values(sample)
+
+    print("Saving results...")
+    save_results(shap_values, sample, X.columns)
+
+    print("\n🎉 SHAP analysis completed & saved in ml/results/")
 
 
 if __name__ == "__main__":
-    explain_model()
+    main()

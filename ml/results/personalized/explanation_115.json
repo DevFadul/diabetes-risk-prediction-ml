@@ -1,0 +1,27 @@
+[
+    {
+        "feature":"Glucose",
+        "value":146.0,
+        "impact":0.1079686717
+    },
+    {
+        "feature":"DiabetesPedigreeFunction",
+        "value":0.539,
+        "impact":0.0943331919
+    },
+    {
+        "feature":"BMI",
+        "value":31.2,
+        "impact":0.0749757247
+    },
+    {
+        "feature":"Pregnancies",
+        "value":4.0,
+        "impact":0.0269623228
+    },
+    {
+        "feature":"SkinThickness",
+        "value":29.0,
+        "impact":0.0235586122
+    }
+]

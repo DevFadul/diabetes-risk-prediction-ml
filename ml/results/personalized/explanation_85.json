@@ -1,0 +1,27 @@
+[
+    {
+        "feature":"Age",
+        "value":27.0,
+        "impact":-0.1485840415
+    },
+    {
+        "feature":"Glucose",
+        "value":110.0,
+        "impact":-0.1265900454
+    },
+    {
+        "feature":"BMI",
+        "value":32.4,
+        "impact":0.0677171552
+    },
+    {
+        "feature":"Pregnancies",
+        "value":2.0,
+        "impact":-0.0448533093
+    },
+    {
+        "feature":"DiabetesPedigreeFunction",
+        "value":0.698,
+        "impact":0.0195544759
+    }
+]

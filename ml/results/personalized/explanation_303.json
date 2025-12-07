@@ -1,0 +1,27 @@
+[
+    {
+        "feature":"BMI",
+        "value":52.9,
+        "impact":0.1898379767
+    },
+    {
+        "feature":"SkinThickness",
+        "value":29.0,
+        "impact":0.0438816235
+    },
+    {
+        "feature":"Pregnancies",
+        "value":5.0,
+        "impact":0.0403492615
+    },
+    {
+        "feature":"Insulin",
+        "value":125.0,
+        "impact":0.0295215276
+    },
+    {
+        "feature":"Age",
+        "value":28.0,
+        "impact":0.0259516401
+    }
+]

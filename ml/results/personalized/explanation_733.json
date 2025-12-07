@@ -1,0 +1,27 @@
+[
+    {
+        "feature":"Age",
+        "value":22.0,
+        "impact":-0.2217142821
+    },
+    {
+        "feature":"Glucose",
+        "value":106.0,
+        "impact":-0.1268701895
+    },
+    {
+        "feature":"BloodPressure",
+        "value":56.0,
+        "impact":-0.053301604
+    },
+    {
+        "feature":"Pregnancies",
+        "value":2.0,
+        "impact":-0.0436960128
+    },
+    {
+        "feature":"Insulin",
+        "value":165.0,
+        "impact":0.0227966291
+    }
+]

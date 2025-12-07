@@ -1,0 +1,27 @@
+[
+    {
+        "feature":"Glucose",
+        "value":152.0,
+        "impact":0.1830243111
+    },
+    {
+        "feature":"DiabetesPedigreeFunction",
+        "value":0.731,
+        "impact":0.0881700333
+    },
+    {
+        "feature":"BMI",
+        "value":26.8,
+        "impact":-0.0803583611
+    },
+    {
+        "feature":"Age",
+        "value":43.0,
+        "impact":0.0659525622
+    },
+    {
+        "feature":"Insulin",
+        "value":29.0,
+        "impact":-0.0568759432
+    }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "feature":"DiabetesPedigreeFunction",
+        "value":0.134,
+        "impact":-0.2372313198
+    },
+    {
+        "feature":"Glucose",
+        "value":157.0,
+        "impact":0.103212684
+    },
+    {
+        "feature":"Insulin",
+        "value":440.0,
+        "impact":-0.0488909409
+    },
+    {
+        "feature":"Pregnancies",
+        "value":2.0,
+        "impact":-0.0427410161
+    },
+    {
+        "feature":"BloodPressure",
+        "value":74.0,
+        "impact":-0.0249354466
+    }
+]

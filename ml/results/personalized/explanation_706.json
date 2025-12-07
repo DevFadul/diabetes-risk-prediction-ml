@@ -1,0 +1,27 @@
+[
+    {
+        "feature":"BMI",
+        "value":32.3,
+        "impact":0.1167187422
+    },
+    {
+        "feature":"Age",
+        "value":30.0,
+        "impact":0.0821294523
+    },
+    {
+        "feature":"BloodPressure",
+        "value":72.0,
+        "impact":0.052736743
+    },
+    {
+        "feature":"Pregnancies",
+        "value":10.0,
+        "impact":0.050352702
+    },
+    {
+        "feature":"Insulin",
+        "value":125.0,
+        "impact":0.048315383
+    }
+]

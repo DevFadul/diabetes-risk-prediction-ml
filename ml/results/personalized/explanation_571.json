@@ -1,0 +1,27 @@
+[
+    {
+        "feature":"BMI",
+        "value":22.6,
+        "impact":-0.2966534837
+    },
+    {
+        "feature":"Age",
+        "value":21.0,
+        "impact":-0.1085934239
+    },
+    {
+        "feature":"DiabetesPedigreeFunction",
+        "value":0.268,
+        "impact":-0.0385711212
+    },
+    {
+        "feature":"Pregnancies",
+        "value":2.0,
+        "impact":-0.0283854412
+    },
+    {
+        "feature":"BloodPressure",
+        "value":96.0,
+        "impact":-0.0222332719
+    }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "feature":"Glucose",
+        "value":155.0,
+        "impact":0.1935700527
+    },
+    {
+        "feature":"BMI",
+        "value":38.7,
+        "impact":0.070902585
+    },
+    {
+        "feature":"Insulin",
+        "value":540.0,
+        "impact":0.0595783403
+    },
+    {
+        "feature":"Age",
+        "value":25.0,
+        "impact":-0.0506785463
+    },
+    {
+        "feature":"SkinThickness",
+        "value":27.0,
+        "impact":0.0271014586
+    }
+]
