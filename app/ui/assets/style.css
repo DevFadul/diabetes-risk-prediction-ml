@@ -565,6 +565,14 @@ html, body, .stApp {
     box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
 }
 
+/* ✅ fix: text color inside info-box in light mode so it's readable */
+
+:root[data-theme="light"] .info-box h2,
+:root[data-theme="light"] .info-box p,
+:root[data-theme="light"] .info-box li {
+    color: #020617;
+}
+
 /* section heading color for light theme */
 
 :root[data-theme="light"] .section-title {
@@ -613,7 +621,6 @@ html, body, .stApp {
 
 /* ===========================================
    make advanced mode buttons perfectly same size
-   (still using key-based hooks, all good)
 =========================================== */
 
 .st-key-adv_btn button,
@@ -677,7 +684,6 @@ html, body, .stApp {
 
 /* ============================================================
    REAL FIX FOR LIGHT-MODE GLITCH ON FORM BUTTONS
-   st.form_submit_button is full-width via use_container_width
 ============================================================ */
 
 /* base pill style for secondary submit buttons */
@@ -690,41 +696,31 @@ html, body, .stApp {
 /* light mode: keep pill dark + text bright so it doesn’t disappear */
 
 :root[data-theme="light"] [data-testid="stForm"] button[kind="secondaryFormSubmit"] {
-    background: #111827 !important;   /* dark pill */
-    color: #f9fafb !important;        /* white text */
+    background: #111827 !important;
+    color: #f9fafb !important;
     border-color: #111827 !important;
 }
 
-/* ============================================================
-   FINAL FIX: generic submit button colors in LIGHT MODE
-   only hits the real submit buttons (Predict / Basic info)
-============================================================ */
+/* FINAL FIX: generic submit button colors in LIGHT MODE */
 
 :root[data-theme="light"] [data-testid="stForm"] button[type="submit"] {
-    background: #2563eb !important;   /* clean blue */
+    background: #2563eb !important;
     border-color: #1d4ed8 !important;
-    color: #ffffff !important;        /* white text – readable */
+    color: #ffffff !important;
 }
-
-/* make sure any inner span/p text stays white as well */
 
 :root[data-theme="light"] [data-testid="stForm"] button[type="submit"] * {
     color: #ffffff !important;
 }
 
-/* ============================================================
-   LIGHT MODE – submit button fix for stFormSubmitButton wrapper
-   again, only for Predict / Basic information actions
-============================================================ */
+/* LIGHT MODE – stFormSubmitButton wrapper */
 
 :root[data-theme="light"] [data-testid="stForm"] [data-testid="stFormSubmitButton"] button {
-    background: #2563eb !important;    /* same blue for both */
+    background: #2563eb !important;
     border-color: #1d4ed8 !important;
-    color: #ffffff !important;         /* white text */
+    color: #ffffff !important;
 }
-
-/* force any child nodes inside the button to stay white */
-
+    
 :root[data-theme="light"] [data-testid="stForm"] [data-testid="stFormSubmitButton"] button * {
     color: #ffffff !important;
 }
